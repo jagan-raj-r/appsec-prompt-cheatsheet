@@ -1,6 +1,6 @@
 # AppSec AI Prompt Cheat Sheet
 
-As a Prompt Engineer specializing in Application Security (AppSec), here's a comprehensive cheat sheet of high-quality prompts to leverage AI in security assessments. These prompts are designed to enhance speed, depth, and accuracy, align with OWASP Top 10, and support both offensive (finding vulnerabilities) and defensive (remediation) approaches.
+As a Prompt Engineer specializing in Application Security (AppSec), here's a comprehensive cheat sheet of high-quality prompts that AppSec engineers can use to leverage AI in security assessments. These prompts are designed to enhance speed, depth, and accuracy, align with OWASP Top 10, and support both offensive (finding vulnerabilities) and defensive (remediation) approaches.
 
 ---
 
@@ -169,13 +169,14 @@ As a Prompt Engineer specializing in Application Security (AppSec), here's a com
 ---
 
 ## 5. SCA / Dependency Analysis (Offensive & Defensive)
+
 **Goal**: Identify and manage risks associated with open-source and third-party components (libraries, frameworks, packages) in the software supply chain. Aligns with OWASP A6:2021 - Vulnerable and Outdated Components and A8:2021 - Software and Data Integrity Failures.
 
 ### Offensive Prompts (Finding Supply Chain Vulnerabilities):
-* **Prompt**: "You are an attacker aiming to compromise an application by exploiting its supply chain. Given a package.json (Node.js) file, identify potential vulnerabilities related to outdated or known-vulnerable dependencies (OWASP A6:2021). Suggest specific dependencies that might be exploitable, their known CVEs, and a hypothetical attack vector.
-package.json snippet:
 
-    ```JSON
+* **Prompt**: "You are an attacker aiming to compromise an application by exploiting its supply chain. Given a `package.json` (Node.js) file, identify potential vulnerabilities related to outdated or known-vulnerable dependencies (OWASP A6:2021). Suggest specific dependencies that might be exploitable, their known CVEs, and a hypothetical attack vector.
+    **`package.json` snippet**:
+    ```json
     {
       "name": "my-app",
       "version": "1.0.0",
@@ -185,23 +186,146 @@ package.json snippet:
         "moment": "^2.29.1",
         "json-schema": "0.2.3"
       }
-    }```
-* **Context**: This is a simplified package.json from a web application."
+    }
+    ```
+    **Context**: This is a simplified `package.json` from a web application."
 
 * **Prompt**: "As a malicious actor, how would you attempt to inject a backdoor or malware into an application through a compromised open-source dependency? Describe the typical steps involved in such a 'Software and Data Integrity Failure' (OWASP A8:2021) attack, from compromising the legitimate dependency to the impact on the target application."
 
 ### Defensive Prompts (Mitigation & Best Practices):
-* **Prompt**: "You are an AppSec engineer responsible for managing software supply chain risks. Outline a strategy for continuously identifying and remediating vulnerabilities in third-party and open-source components used in a CI/CD pipeline. Address how to:
 
-Automate SCA scanning early in the SDLC ('shift left').
-Prioritize findings based on exploitability and reachability (not just CVSS score).
-Generate and maintain a Software Bill of Materials (SBOM).
-Manage transitive dependencies.
-Respond to newly disclosed CVEs for already deployed components.
-Consider: Tools like OWASP Dependency-Check, Snyk, Mend, JFrog Xray, etc."
+* **Prompt**: "You are an AppSec engineer responsible for managing software supply chain risks. Outline a strategy for continuously identifying and remediating vulnerabilities in third-party and open-source components used in a CI/CD pipeline. Address how to:
+    1.  Automate SCA scanning early in the SDLC ('shift left').
+    2.  Prioritize findings based on exploitability and reachability (not just CVSS score).
+    3.  Generate and maintain a Software Bill of Materials (SBOM).
+    4.  Manage transitive dependencies.
+    5.  Respond to newly disclosed CVEs for already deployed components.
+
+    **Consider**: Tools like OWASP Dependency-Check, Snyk, Mend, JFrog Xray, etc."
 
 * **Prompt**: "A recent critical vulnerability (e.g., Log4Shell - CVE-2021-44228) has been disclosed in a widely used Java library. As an AppSec professional, describe the immediate steps your team should take to identify if this vulnerability affects your applications, assess its impact, and implement remediation measures. Focus on processes that align with mitigating 'Vulnerable and Outdated Components' (OWASP A6:2021) and 'Software and Data Integrity Failures' (OWASP A8:2021)."
 
 * **Prompt**: "Explain the importance of 'integrity verification' for downloaded software updates, libraries, and container images in the context of preventing supply chain attacks (OWASP A8:2021). Describe common methods for verifying integrity (e.g., digital signatures, cryptographic hashes) and how they should be integrated into a secure CI/CD pipeline and deployment process."
 
 ---
+
+## 6. Policy, Documentation & Awareness (Defensive)
+
+**Goal**: Establish and enforce security policies, create useful documentation, and foster a security-aware culture.
+
+* **Prompt**: "You are an AppSec lead tasked with creating a new 'Secure Coding Policy' for your development teams. Outline the key sections and topics that this policy should cover, focusing on practical guidelines that align with OWASP Top 10 and secure by design principles. Include guidance on input validation, error handling, authentication, authorization, and cryptographic practices."
+
+* **Prompt**: "Describe how to effectively integrate security documentation (e.g., threat models, security requirements, architecture diagrams with security zones) into existing development workflows and tools (e.g., Confluence, Jira, GitHub Wiki). What are the best practices to ensure this documentation remains current and accessible to both developers and security engineers?"
+
+* **Prompt**: "Design a curriculum for a mandatory AppSec awareness training program for all software developers. What are the top 5 most critical AppSec concepts or vulnerabilities you would prioritize, and how would you make the training engaging and relevant to their daily work? Provide specific examples of how to explain complex vulnerabilities like SQL Injection or XSS in an understandable way."
+
+* **Prompt**: "Draft a 'Security Incident Response Plan' snippet specifically for an application-level security breach (e.g., data exfiltration due to a web vulnerability). Focus on the initial detection, containment, eradication, recovery, and post-incident analysis steps, outlining who is responsible for each phase."
+
+---
+
+## 7. Fix and Hardening Guidance (Defensive)
+
+**Goal**: Provide actionable guidance for fixing identified vulnerabilities and hardening application environments beyond code.
+
+* **Prompt**: "A recent penetration test identified 'Insecure Configuration' (OWASP A5:2021) related to sensitive data exposure in your Nginx web server configuration. Provide precise Nginx configuration snippets and explanations to address common insecure configurations such as:
+    1.  Directory listing enabled.
+    2.  Missing security headers (Content-Security-Policy, X-Frame-Options, X-Content-Type-Options).
+    3.  Weak TLS/SSL settings (outdated protocols, weak ciphers).
+    4.  Overly permissive access to sensitive directories.
+
+    **Context**: The application serves static files and acts as a reverse proxy for a backend API."
+
+* **Prompt**: "You need to harden a Linux server running a critical web application. Provide a checklist of essential hardening steps, covering:
+    1.  Operating system updates and patching.
+    2.  User and access management (least privilege).
+    3.  Network configurations (firewall rules).
+    4.  Logging and auditing.
+    5.  Service hardening (e.g., SSH, database).
+
+    **Focus**: Practical, implementable steps that align with general security best practices."
+
+* **Prompt**: "Describe the process for securely managing secrets (API keys, database credentials) within a cloud-native application deployed on Kubernetes. Focus on solutions like Kubernetes Secrets, Vault, or AWS Secrets Manager. Explain why storing secrets directly in code or environment variables is insecure and how these solutions provide better protection."
+
+* **Prompt**: "Outline a strategy for securely patching and updating dependencies and application code in a production environment with minimal downtime. Include considerations for testing, rollback procedures, and communication with stakeholders. Emphasize how this mitigates 'Vulnerable and Outdated Components' (OWASP A6:2021)."
+
+---
+
+## 8. DAST / API Security (Offensive & Defensive)
+
+**Goal**: Leverage AI for dynamic application security testing (DAST) insights and specific API security challenges.
+
+### Offensive Prompts (Finding DAST/API Vulnerabilities):
+
+* **Prompt**: "You are simulating a DAST scanner. Given the OpenAPI/Swagger definition of a REST API, identify potential attack surface areas for common API vulnerabilities (OWASP API Security Top 10, e.g., Broken Object Level Authorization, Broken Function Level Authorization, Mass Assignment, Excessive Data Exposure). For each identified area, describe a potential test case/payload.
+    **OpenAPI Snippet (example)**:
+    ```yaml
+    paths:
+      /users/{userId}:
+        get:
+          summary: Get user profile by ID
+          parameters:
+            - name: userId
+              in: path
+              required: true
+              schema:
+                type: integer
+          responses:
+            '200':
+              description: User profile
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      isAdmin: # Potential excessive data exposure or privilege escalation
+                        type: boolean
+    ```
+    **Context**: Focus on common API logic flaws."
+
+* **Prompt**: "As a DAST expert, explain how to automatically test a web application for 'Broken Access Control' (OWASP A1:2021) vulnerabilities, specifically focusing on horizontal and vertical privilege escalation. Describe the methodology, including how to manipulate session tokens, user IDs, and roles to bypass authorization checks. Provide a simplified pseudo-code example of a test scenario."
+
+* **Prompt**: "Describe how to probe an API for 'NoSQL Injection' vulnerabilities, given that it interacts with a MongoDB backend. Provide examples of common NoSQL injection payloads that could bypass authentication or extract data, and explain the underlying principles."
+
+### Defensive Prompts (DAST/API Remediation & Best Practices):
+
+* **Prompt**: "You are designing a new RESTful API. Outline the essential security considerations for 'API Security' (referencing OWASP API Security Top 10). Cover topics such as:
+    1.  Authentication and Authorization mechanisms (e.g., OAuth 2.0, JWT validation).
+    2.  Input validation and sanitization for all API endpoints.
+    3.  Rate limiting and throttling to prevent abuse.
+    4.  Data encryption in transit (TLS) and at rest.
+    5.  Logging and monitoring of API calls for suspicious activity.
+
+    **Focus**: Preventative measures from the design phase."
+
+* **Prompt**: "Explain the role of DAST (Dynamic Application Security Testing) in an AppSec program. What types of vulnerabilities is DAST best suited to find, and what are its limitations? How can DAST be integrated into a CI/CD pipeline to provide continuous security feedback without slowing down development?"
+
+* **Prompt**: "Given an API endpoint that processes financial transactions, detail how to implement robust 'Broken Object Level Authorization' (OWASP API1:2023) and 'Broken Function Level Authorization' (OWASP API5:2023) controls. Provide a clear distinction between the two and present secure coding patterns (e.g., attribute-based access control, resource ownership checks) to prevent these flaws."
+
+---
+
+## 9. Bug Bounty / Offensive Use Cases (Offensive)
+
+**Goal**: Generate prompts for offensive security research, bug bounty hunting, and advanced attack simulations.
+
+* **Prompt**: "You are a bug bounty hunter targeting a modern web application that uses a GraphQL API. Suggest advanced enumeration and exploitation techniques for GraphQL, focusing on potential vulnerabilities like:
+    1.  Information disclosure via introspection.
+    2.  Rate limiting bypasses.
+    3.  Mass assignment through mutations.
+    4.  SQL Injection or other backend injection attacks via GraphQL arguments.
+
+    Provide specific GraphQL query examples for each scenario."
+
+* **Prompt**: "Given the following application description, identify uncommon or niche attack vectors that might lead to a high-severity bug in a bug bounty program. Think beyond OWASP Top 10 for novel attack paths.
+    **Application Description**: A cloud-based image processing service that allows users to upload images, apply filters, and share them. It integrates with several third-party image libraries and uses a serverless architecture (AWS Lambda, S3, API Gateway).
+
+    **Consider**: Image parsing vulnerabilities, serverless misconfigurations, side-channel attacks, or race conditions."
+
+* **Prompt**: "You are conducting a red team exercise against an organization. The primary goal is to achieve remote code execution (RCE) on any internal server. Describe a multi-stage attack chain that starts from a typical web vulnerability (e.g., SSRF, file upload vulnerability) and escalates to RCE. Include potential pivots, lateral movement techniques, and post-exploitation steps."
+
+* **Prompt**: "Generate a list of advanced reconnaissance techniques a bug bounty hunter could use to discover hidden API endpoints, subdomains, or unlisted functionalities of a target web application. Include methods like JavaScript analysis, WAF bypass techniques for enumeration, and open-source intelligence (OSINT) gathering."
