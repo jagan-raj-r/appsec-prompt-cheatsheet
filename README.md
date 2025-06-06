@@ -167,3 +167,41 @@ As a Prompt Engineer specializing in Application Security (AppSec), here's a com
 * **Prompt**: "Imagine you are building a new authentication service. Detail a secure authentication and session management design, focusing on mitigating common vulnerabilities like credential stuffing, brute-force attacks, and session hijacking (OWASP A7:2021 - Identification and Authentication Failures). Include elements like multi-factor authentication (MFA), strong password policies, secure cookie flags, and session invalidation."
 
 ---
+
+## 5. SCA / Dependency Analysis (Offensive & Defensive)
+**Goal**: Identify and manage risks associated with open-source and third-party components (libraries, frameworks, packages) in the software supply chain. Aligns with OWASP A6:2021 - Vulnerable and Outdated Components and A8:2021 - Software and Data Integrity Failures.
+
+### Offensive Prompts (Finding Supply Chain Vulnerabilities):
+* **Prompt**: "You are an attacker aiming to compromise an application by exploiting its supply chain. Given a package.json (Node.js) file, identify potential vulnerabilities related to outdated or known-vulnerable dependencies (OWASP A6:2021). Suggest specific dependencies that might be exploitable, their known CVEs, and a hypothetical attack vector.
+package.json snippet:
+
+    ```JSON
+    {
+      "name": "my-app",
+      "version": "1.0.0",
+      "dependencies": {
+        "lodash": "^4.17.20",
+        "express": "^4.17.1",
+        "moment": "^2.29.1",
+        "json-schema": "0.2.3"
+      }
+    }```
+* **Context**: This is a simplified package.json from a web application."
+
+* **Prompt**: "As a malicious actor, how would you attempt to inject a backdoor or malware into an application through a compromised open-source dependency? Describe the typical steps involved in such a 'Software and Data Integrity Failure' (OWASP A8:2021) attack, from compromising the legitimate dependency to the impact on the target application."
+
+### Defensive Prompts (Mitigation & Best Practices):
+* **Prompt**: "You are an AppSec engineer responsible for managing software supply chain risks. Outline a strategy for continuously identifying and remediating vulnerabilities in third-party and open-source components used in a CI/CD pipeline. Address how to:
+
+Automate SCA scanning early in the SDLC ('shift left').
+Prioritize findings based on exploitability and reachability (not just CVSS score).
+Generate and maintain a Software Bill of Materials (SBOM).
+Manage transitive dependencies.
+Respond to newly disclosed CVEs for already deployed components.
+Consider: Tools like OWASP Dependency-Check, Snyk, Mend, JFrog Xray, etc."
+
+* **Prompt**: "A recent critical vulnerability (e.g., Log4Shell - CVE-2021-44228) has been disclosed in a widely used Java library. As an AppSec professional, describe the immediate steps your team should take to identify if this vulnerability affects your applications, assess its impact, and implement remediation measures. Focus on processes that align with mitigating 'Vulnerable and Outdated Components' (OWASP A6:2021) and 'Software and Data Integrity Failures' (OWASP A8:2021)."
+
+* **Prompt**: "Explain the importance of 'integrity verification' for downloaded software updates, libraries, and container images in the context of preventing supply chain attacks (OWASP A8:2021). Describe common methods for verifying integrity (e.g., digital signatures, cryptographic hashes) and how they should be integrated into a secure CI/CD pipeline and deployment process."
+
+---
