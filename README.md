@@ -329,3 +329,125 @@ As a Prompt Engineer specializing in Application Security (AppSec), here's a com
 * **Prompt**: "You are conducting a red team exercise against an organization. The primary goal is to achieve remote code execution (RCE) on any internal server. Describe a multi-stage attack chain that starts from a typical web vulnerability (e.g., SSRF, file upload vulnerability) and escalates to RCE. Include potential pivots, lateral movement techniques, and post-exploitation steps."
 
 * **Prompt**: "Generate a list of advanced reconnaissance techniques a bug bounty hunter could use to discover hidden API endpoints, subdomains, or unlisted functionalities of a target web application. Include methods like JavaScript analysis, WAF bypass techniques for enumeration, and open-source intelligence (OSINT) gathering."
+
+---
+
+## 10. Compliance & Policy Mapping (Defensive)
+
+**Goal**: Leverage AI to assist in understanding, mapping, and demonstrating adherence to security standards and regulations.
+
+* **Prompt**: "You are an AppSec compliance specialist. Given a set of security requirements from NIST SP 800-53 (e.g., AC-3 Access Enforcement, AU-2 Event Logging), explain how a modern microservices-based web application implemented in Node.js and deployed on AWS could meet these controls. Provide specific examples of code patterns, AWS services, and configurations that would satisfy each control."
+
+* **Prompt**: "Our organization needs to achieve PCI-DSS compliance for a new payment processing module. Describe how AI can assist in the process of mapping application security controls (e.g., secure coding practices, vulnerability management) to specific PCI-DSS requirements (e.g., Requirement 6: Develop and Maintain Secure Systems and Software). How can AI help generate a compliance matrix or identify gaps?"
+
+* **Prompt**: "Draft a high-level summary explaining the key differences and overlaps between the security requirements of GDPR and CCPA from an application development perspective. Focus on aspects like data privacy, consent management, data deletion, and data breach notification within the application logic itself."
+
+* **Prompt**: "Given a set of application security findings from a recent penetration test, categorize and prioritize them based on their relevance and impact on achieving SOC 2 Type 2 compliance. For each critical finding, suggest remediation strategies that would specifically satisfy SOC 2 Trust Services Criteria (e.g., Security, Availability, Confidentiality)."
+
+---
+
+## 11. Vulnerability Prioritization & Remediation Planning (Defensive)
+
+**Goal**: Use AI to intelligently prioritize vulnerabilities and create effective remediation plans.
+
+* **Prompt**: "You are an AppSec analyst. Given the following list of vulnerabilities with their CVSS scores, provide a prioritized remediation plan. For each vulnerability, consider:
+    1.  Its CVSS Base Score.
+    2.  Its exploitability (simple vs. complex).
+    3.  Its business impact (critical data, core functionality).
+    4.  Whether it's reachable from an unauthenticated user.
+    5.  Suggest specific, actionable remediation steps and the effort level (low, medium, high).
+
+    **Vulnerability List**:
+    -   SQL Injection (CVSS 9.8) in admin login page
+    -   Reflected XSS (CVSS 6.1) in search function
+    -   Outdated `lodash` library (CVSS 7.5, CVE-2020-28500)
+    -   Missing HSTS header (CVSS 2.6)
+    -   Insecure Direct Object Reference (CVSS 7.7) on user profile API (allows viewing other users' public profiles)
+
+    **Output Format**: Prioritized list with rationale and remediation actions."
+
+* **Prompt**: "Describe how AI can enhance a traditional vulnerability management program by providing context-aware prioritization. Specifically, how can an LLM incorporate factors beyond a standard CVSS score, such as attacker likelihood, asset criticality, and existing compensating controls, to offer a more nuanced risk assessment?"
+
+* **Prompt**: "Given a detailed report for a critical server-side vulnerability (e.g., an RCE flaw), generate a comprehensive remediation plan that includes not only code fixes but also recommendations for:
+    1.  Testing (unit, integration, security).
+    2.  Deployment considerations (e.g., canary deployment, rollback).
+    3.  Post-deployment monitoring.
+    4.  Documentation updates.
+    5.  Preventative measures to avoid similar issues in the future.
+
+    **Context**: Assume a typical CI/CD environment."
+
+---
+
+## 12. Security Architecture Review & Pattern Analysis (Defensive)
+
+**Goal**: Leverage AI to review and analyze system architectures for security weaknesses and recommend secure patterns.
+
+* **Prompt**: "You are a cloud security architect. Analyze the following high-level architectural description for potential security flaws. Focus on common cloud security pitfalls related to network segmentation, access control, data storage, and inter-service communication. For each identified flaw, suggest a secure architectural pattern or AWS service to mitigate it.
+    **Architecture Description**:
+    A web application hosted on AWS. Frontend on S3/CloudFront. Backend API on EC2 instances in a public subnet with a public IP. RDS database also in a public subnet. No explicit network ACLs or security groups between components beyond default. API uses basic authentication.
+
+    **Consider**: OWASP A5:2021 (Security Misconfiguration) and general cloud security best practices."
+
+* **Prompt**: "Explain the concept of 'Zero Trust Architecture' in the context of a modern enterprise application moving from an on-premise monolithic application to a microservices architecture in the cloud. How would you apply Zero Trust principles to:
+    1.  User and device authentication.
+    2.  Network segmentation.
+    3.  API authorization.
+    4.  Data access.
+
+    Provide practical examples."
+
+* **Prompt**: "Given a description of a sensitive data flow through an application (e.g., processing credit card information), identify potential points of data exposure or tampering. Suggest secure design patterns and cryptographic controls (e.g., encryption, tokenization, secure multi-party computation) to protect the data at each stage (at rest, in transit, in use)."
+
+* **Prompt**: "Analyze the provided diagram describing a secure software development lifecycle (SSDLC) and identify any missing security activities or potential bottlenecks. Suggest improvements to enhance the 'shift left' security posture.
+    **SSDLC Description**:
+    -   Requirements -> Design (Functional only) -> Coding -> Testing (Functional + QA) -> Deployment -> Pentest (one-off) -> Production.
+    -   Security is primarily handled by the pentest team at the end.
+
+    **Focus**: Incorporating security earlier and more continuously."
+
+---
+
+## 13. Secure SDLC Orchestration & Automation (AI-assisted)
+
+**Goal**: Explore how AI can integrate and automate security processes within the Software Development Lifecycle.
+
+* **Prompt**: "You are an expert in DevSecOps. Propose ways that AI/ML could be integrated into a CI/CD pipeline to enhance application security automation. Focus on:
+    1.  Automated PR/code review for security flaws.
+    2.  Intelligent vulnerability correlation and false positive reduction from SAST/DAST/SCA tools.
+    3.  Automated generation of remediation code snippets for common vulnerabilities.
+    4.  Predictive analysis of security risks based on code changes.
+
+    **Consider**: How AI can augment existing tools, not replace them."
+
+* **Prompt**: "Describe how AI can help customize and optimize static application security testing (SAST) rules for a specific codebase written in Java, reducing noise and improving accuracy. How can AI learn from previous false positives and true positives to refine future scan results?"
+
+* **Prompt**: "Outline a process for using AI to monitor security configurations and policies across a fleet of cloud resources (e.g., AWS S3 buckets, EC2 security groups, Lambda functions) and automatically flag or even remediate deviations from established baselines. How can AI help in continuous compliance enforcement?"
+
+* **Prompt**: "Explain how AI could be used to generate secure test cases or fuzzing inputs for APIs, beyond simple permutations. How can AI learn from API specifications (e.g., OpenAPI) and observed traffic to identify complex, multi-step attack scenarios or logic flaws that traditional fuzzing might miss?"
+
+---
+
+## 14. Privacy by Design & Data Protection (Defensive)
+
+**Goal**: Integrate AI to assist in implementing privacy principles throughout the application lifecycle.
+
+* **Prompt**: "You are a privacy engineer. Given a user story that involves collecting new personally identifiable information (PII) from users (e.g., 'As a user, I want to upload my government ID for verification'), identify the key 'Privacy by Design' principles that must be considered. For each principle (e.g., Data Minimization, Purpose Limitation, Transparency, Security), explain how it should be implemented in the application's design and code."
+
+* **Prompt**: "Describe how an application can securely implement 'the right to be forgotten' (data erasure) as required by GDPR. Focus on the technical challenges for distributed systems and databases, and suggest a secure, auditable process for data deletion. Consider edge cases like backups and logs."
+
+* **Prompt**: "Outline a strategy for automated data classification and labeling within an application's data stores (e.g., identifying PII, sensitive financial data, health data). How can AI help in this process, and how does accurate classification contribute to better data protection and access control policies?"
+
+* **Prompt**: "Given a data breach scenario involving the exposure of user PII, how would an AI system assist the incident response team in assessing the scope of the breach, identifying affected users, and generating the necessary data breach notification reports, while adhering to regulatory requirements (e.g., GDPR, CCPA)?"
+
+---
+
+### How to use this `.md` file:
+
+1.  **Copy the entire content** within the ````markdown` and ```` tags above.
+2.  **Open a plain text editor** on your computer (e.g., Notepad, TextEdit, VS Code, Sublime Text).
+3.  **Paste the copied content** into the editor.
+4.  **Save the file** with a `.md` extension (e.g., `AppSec_AI_Prompts_Extended.md`).
+5.  **Ensure you save it as "Plain Text"** to prevent any unwanted formatting.
+
+This comprehensive version should provide a wealth of high-quality prompts for a wide range of AppSec activities!
