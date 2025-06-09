@@ -441,13 +441,3 @@ As a Prompt Engineer specializing in Application Security (AppSec), here's a com
 * **Prompt**: "Given a data breach scenario involving the exposure of user PII, how would an AI system assist the incident response team in assessing the scope of the breach, identifying affected users, and generating the necessary data breach notification reports, while adhering to regulatory requirements (e.g., GDPR, CCPA)?"
 
 ---
-
-### How to use this `.md` file:
-
-1.  **Copy the entire content** within the ````markdown` and ```` tags above.
-2.  **Open a plain text editor** on your computer (e.g., Notepad, TextEdit, VS Code, Sublime Text).
-3.  **Paste the copied content** into the editor.
-4.  **Save the file** with a `.md` extension (e.g., `AppSec_AI_Prompts_Extended.md`).
-5.  **Ensure you save it as "Plain Text"** to prevent any unwanted formatting.
-
-This comprehensive version should provide a wealth of high-quality prompts for a wide range of AppSec activities!
