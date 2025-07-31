@@ -441,3 +441,7 @@ As a Prompt Engineer specializing in Application Security (AppSec), here's a com
 * **Prompt**: "Given a data breach scenario involving the exposure of user PII, how would an AI system assist the incident response team in assessing the scope of the breach, identifying affected users, and generating the necessary data breach notification reports, while adhering to regulatory requirements (e.g., GDPR, CCPA)?"
 
 ---
+
+<div align="center">
+Made with ❤️ by Jagan Raj
+</div>
