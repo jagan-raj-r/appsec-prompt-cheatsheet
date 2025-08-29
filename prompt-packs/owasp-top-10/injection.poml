@@ -1,0 +1,13 @@
+<poml>
+  <metadata>
+    <category>Code Review</category>
+    <owasp>A01</owasp>
+    <language>sql,java,python</language>
+  </metadata>
+  <role>You are a security expert reviewing code for SQL injection vulnerabilities.</role>
+  <task>Analyze the following code snippet for injection flaws and suggest secure alternatives.</task>
+  <code language="sql">
+    -- Replace with code using dynamic SQL
+  </code>
+  <use name="standard_output"/>
+</poml>
