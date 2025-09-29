@@ -1,55 +1,79 @@
-# AppSec Prompt Packs
+# AppSec Code Review Prompts
 
-Welcome to the **AppSec Prompt Packs** — a modular collection of ready-to-use POML prompts tailored for common application security use cases.
+Welcome to the **AppSec Code Review Prompts** — a collection of ready-to-use security analysis prompts for comprehensive code reviews.
 
-These prompt packs are designed to help **security engineers, developers, red teamers, and bug bounty hunters** automate and scale their security reviews using AI (e.g., GPT-4, Claude, or open-source LLMs).
+These prompts are designed to help **security engineers, developers, and analysts** conduct thorough, context-aware security reviews using AI (e.g., GPT-4, Claude, or other LLMs).
 
 ---
 
 ## 🔧 How to Use
 
-1. **Pick a Prompt Pack**: Each folder in `prompt-packs/` focuses on a security domain (e.g., `owasp-top-10`, `cloud-threats`, `auth-flows`).
-2. **Load a Prompt**: Each `.poml` file follows the [POML (Prompt Orchestration Markup Language)](https://github.com/microsoft/poml) format.
-3. **Inject Context**: Replace the `<code>` or `<context>` content with real code snippets, configurations, or threat models.
-4. **Send to LLM**: Use any POML-compatible runner (e.g., Python SDK, VS Code extension, CLI) to render and send the prompt to your preferred language model.
-5. **Interpret & Remediate**: Review the output and apply the insights to strengthen your application security posture.
+1. **Choose a Prompt**: Select from general code review or OWASP Top 10 specific prompts
+2. **Copy the Prompt**: Each `.md` file contains a complete, ready-to-use prompt
+3. **Add Your Code**: Paste your code snippet in the designated section at the bottom
+4. **Run Analysis**: Send the complete prompt + code to your preferred LLM (ChatGPT, Claude, etc.)
+5. **Review Results**: Get structured vulnerability analysis with fixes and recommendations
+6. **Apply Fixes**: Implement the suggested security improvements
 
 ---
 
 ## 🧠 Why This is Helpful
 
-- ✅ **Consistent Prompting**: Reduces prompt variability and improves response quality
-- ✅ **Actionable Outputs**: Prompts request structured output: vulnerabilities, severity, impact, and fix
-- ✅ **Modular & Reusable**: Works across languages, threat types, and environments
-- ✅ **Works in CI/CD or IDEs**: Compatible with CLI tools and developer workflows
-- ✅ **Community-Extendable**: Anyone can add new prompts, extend packs, or integrate with other tools
+- ✅ **Context-Aware Analysis**: Understands code purpose first, then performs targeted security review
+- ✅ **Reduced False Positives**: Focuses only on relevant vulnerabilities based on code functionality
+- ✅ **Structured Output**: Consistent vulnerability tables with severity, impact, and fixes
+- ✅ **Comprehensive Coverage**: Both general security and OWASP Top 10 specific analysis
+- ✅ **Easy to Use**: Copy-paste prompts that work with any major LLM
+- ✅ **Actionable Results**: Detailed remediation guidance and secure code examples
 
 ---
 
-## 📦 Available Packs
+## 📦 Available Prompts
 
-- [`owasp-top-10/`](./owasp-top-10): Prompts for Injection, XSS, and Broken Authentication (more coming soon)
-- `cloud-threats/`: (coming soon)
-- `auth-flows/`: (coming soon)
-- `threat-modeling/`: (coming soon)
+### 🔍 General Security Review
+- [`code-review.md`](./code-review.md): **Context-aware comprehensive security analysis**
+  - Understands code purpose before analyzing for vulnerabilities
+  - Covers 10 major vulnerability categories
+  - Reduces false positives through targeted analysis
+  - Perfect for any codebase regardless of domain
 
----
-
-## 🧩 Dependencies
-
-Most prompts reference a shared output style block:
-
-> Be sure to include: `/shared/output_format.let`
-
-You can load this into your POML renderer so prompts using `<use name="standard_output"/>` resolve correctly.
+### 🏆 OWASP Top 10 Specific
+- [`owasp-top-10/`](./owasp-top-10): **Specialized prompts for specific vulnerability types**
+  - Injection vulnerabilities (SQL, Command, etc.)
+  - Cross-Site Scripting (XSS)
+  - Broken Authentication & Authorization
+  - Server-Side Request Forgery (SSRF)
+  - Cryptographic Failures
+  - Security Misconfiguration
+  - And more...
 
 ---
 
 ## 🚀 Contribute
 
-Want to improve security workflows using AI? Add your own prompts, use-cases, or language coverage.
+Want to improve security workflows using AI? 
+
+- **Add new vulnerability-specific prompts** to the OWASP Top 10 collection
+- **Enhance the general code review prompt** with additional security categories
+- **Create domain-specific prompts** for mobile, cloud, or IoT security
+- **Improve prompt effectiveness** through testing and community feedback
 
 See [`CONTRIBUTING.md`](../CONTRIBUTING.md) for help getting started.
+
+---
+
+## 💡 Usage Tips
+
+**For Best Results:**
+- Provide context about your code's purpose when using the general prompt
+- Use specific OWASP prompts when you suspect a particular vulnerability type
+- Combine multiple prompts for comprehensive coverage of complex applications
+- Review and verify all AI-generated findings before implementing fixes
+
+**Token Optimization:**
+- The general prompt is optimized for minimal token usage while maintaining thoroughness
+- For large codebases, break into smaller, logical chunks for analysis
+- Use the most specific prompt available for your use case
 
 ---
 
